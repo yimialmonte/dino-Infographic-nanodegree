@@ -35,7 +35,6 @@ let humanData = function () {
   })(human);
 };
 
-
 // Create Dino Compare Method 1
 // NOTE: Weight in JSON file is in lbs, height in inches.
 
@@ -50,5 +49,15 @@ let humanData = function () {
 // Add tiles to DOM
 
 // Remove form from screen
+function removeForm() {
+  let formElement = document.getElementById('dino-compare');
+  formElement.style.cssText = 'display: none;';
+}
 
 // On button click, prepare and display infographic
+let btnElement = document.getElementById('btn');
+
+btnElement.addEventListener('click', function () {
+  humanData();
+  console.log(human);
+});
