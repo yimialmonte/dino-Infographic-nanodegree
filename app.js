@@ -1,5 +1,5 @@
 // Create Dino Constructor
-function Dino({ species, weight, height, diet, where, when, fact }) {
+function Dino({ species, weight, height, diet, where, when, fact } ) {
   this.specie = species;
   this.weight = weight;
   this.height = height;
@@ -12,9 +12,15 @@ function Dino({ species, weight, height, diet, where, when, fact }) {
 
 // Create Dino Objects
 let dinos = [];
+let facts = [];
+
 fetch('./dino.json')
   .then((res) => res.json())
   .then((data) => {
+    facts = data.Dinos
+      .filter((dino) => dino.fact !== "All birds are living dinosaurs.")
+      .map((item) => item.fact);
+
     dinos = data.Dinos.map((dino) => new Dino(dino));
   });
 
