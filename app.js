@@ -30,23 +30,33 @@ const human = {};
 // Use IIFE to get human data from form
 let humanData = function () {
   (function (human) {
-    human.Name = document.getElementById('name').value;
-    human.Height = {
+    human.name = document.getElementById('name').value;
+    human.height = {
       feet: document.getElementById('feet').value,
       inches: document.getElementById('inches').value,
     };
-    human.Weight = document.getElementById('weight').value;
-    human.Diet = document.getElementById('diet').value;
+    human.weight = document.getElementById('weight').value;
+    human.diet = document.getElementById('diet').value;
     human.image = 'images/human.png';
   })(human);
 };
 
 // Create Dino Compare Method 1
 // NOTE: Weight in JSON file is in lbs, height in inches.
-
+Dino.prototype.compareWeight = function(human) {
+  const humanWeight = Number(human.weight)
+  if(this.weight > humanWeight) {
+    this.fact = `${this.specie} has ${this.weight - human.weight} more weight than human.`
+  } else if(this.weight < humanWeight) {
+    this.fact = `${this.specie} has ${human.weight - this.weight} less weight than human.`
+  } else {
+    this.fact = `${this.specie} has the same weight as human.`
+  }
+}
 // Create Dino Compare Method 2
 // NOTE: Weight in JSON file is in lbs, height in inches.
-
+Dino.prototype.compareDeit = function(human) {
+}
 // Create Dino Compare Method 3
 // NOTE: Weight in JSON file is in lbs, height in inches.
 
@@ -65,5 +75,6 @@ let btnElement = document.getElementById('btn');
 
 btnElement.addEventListener('click', function () {
   humanData();
-  console.log(human);
+  dinos.forEach(dino => dino.compareWeight(human))
+  console.log(dinos)
 });
